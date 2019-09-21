@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div>
+		{% with messages=get_flashed_messages() %}
+		{% if messages%}
+		     {% for message in messages%}
+		     <h3>{{message}}</h3>
+		     {%endfor%}
+		{%endif%}
+		{%endwith%}
+
+	</div>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">DEPARTMENT</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  	{% for i in reg %}
+    <tr>
+      <th>{{ i.id}}</th>
+      <td>{{ i.name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.des}}</td>
+      <td><a href=" {{ url_for('editData',register_id=i.id)}}">EDIT</a></td>
+      <td><a href=" {{ url_for('deleteData',register_id=i.id)}}">delete</a></td>
+    </tr>
+    {% endfor %}
+ 
+     </tbody>
+     </table>
+     <form action="/add" >
+     	<input type="submit" value="addData">
+     </form> 	
+</body>
+</html>
